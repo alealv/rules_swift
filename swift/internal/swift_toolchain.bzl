@@ -74,7 +74,7 @@ def _all_tool_configs(
         use_param_file: If True, the compile action should use a param file for
             its arguments.
         use_autolink_extract: If True, the link action should use
-            `swift-autolink-extract` to extract the complier directed linking
+            `swift-autolink-extract` to extract the compiler directed linking
             flags.
         use_module_wrap: If True, the compile action should embed the
             swiftmodule into the final image.

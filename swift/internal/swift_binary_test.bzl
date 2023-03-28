@@ -287,7 +287,7 @@ def _swift_linking_rule_impl(
             swift_common.create_module(
                 name = module_context.name,
                 compilation_context = module_context.compilation_context,
-                # The rest of the fields are intentionally ommited, as we only
+                # The rest of the fields are intentionally omitted, as we only
                 # want to expose the compilation_context
             ),
         ]
