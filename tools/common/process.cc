@@ -333,7 +333,7 @@ std::vector<const char *> ConvertToCArgs(const std::vector<std::string> &args) {
   std::vector<const char *> c_args;
   std::string filename = std::filesystem::path(args[0]).filename().string();
   c_args.push_back(&*std::next(args[0].rbegin(), filename.length() - 1));
-  for (int i = 1; i < args.size(); i++) {
+  for (size_t i = 1; i < args.size(); i++) {
     c_args.push_back(args[i].c_str());
   }
   c_args.push_back(nullptr);

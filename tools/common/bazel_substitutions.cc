@@ -130,7 +130,7 @@ bool BazelPlaceholderSubstitutions::FindAndReplace(
     const std::string &placeholder,
     BazelPlaceholderSubstitutions::PlaceholderResolver &resolver,
     std::string &str) {
-  int start = 0;
+  size_t start = 0;
   bool changed = false;
   while ((start = str.find(placeholder, start)) != std::string::npos) {
     std::string resolved_value = resolver.get();
