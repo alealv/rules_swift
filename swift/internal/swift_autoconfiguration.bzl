@@ -231,7 +231,7 @@ def _normalized_linux_cpu(cpu):
         return "x86_64"
     return cpu
 
-def _create_linux_toolchain(repository_ctx):
+def create_linux_toolchain(repository_ctx, path_to_swiftc):
     """Creates BUILD targets for the Swift toolchain on Linux.
 
     Args:
@@ -243,7 +243,6 @@ def _create_linux_toolchain(repository_ctx):
              "requires that the driver used is clang. Please set `CC=clang` " +
              "in your environment before invoking Bazel.")
 
-    path_to_swiftc = repository_ctx.which("swiftc")
     if not path_to_swiftc:
         fail("No 'swiftc' executable found in $PATH")
 
@@ -408,7 +407,7 @@ def _swift_autoconfiguration_impl(repository_ctx):
     elif os_name.startswith("windows"):
         _create_windows_toolchain(repository_ctx)
     else:
-        _create_linux_toolchain(repository_ctx)
+        create_linux_toolchain(repository_ctx, repository_ctx.which("swiftc"))
 
 swift_autoconfiguration = repository_rule(
     environ = ["CC", "PATH", "ProgramData", "Path"],

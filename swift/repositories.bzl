@@ -31,7 +31,7 @@ def _maybe(repo_rule, name, **kwargs):
     if not native.existing_rule(name):
         repo_rule(name = name, **kwargs)
 
-def swift_rules_dependencies(include_bzlmod_ready_dependencies = True):
+def swift_rules_dependencies(include_bzlmod_ready_dependencies = True, autoconfig = True):
     """Fetches repositories that are dependencies of `rules_swift`.
 
     Users should call this macro in their `WORKSPACE` to ensure that all of the
@@ -41,6 +41,7 @@ def swift_rules_dependencies(include_bzlmod_ready_dependencies = True):
     Args:
         include_bzlmod_ready_dependencies: Whether or not bzlmod-ready
             dependencies should be included.
+        autoconfig: Whether or not to configure the Swift toolchain from the local environment automatically
     """
     if include_bzlmod_ready_dependencies:
         _maybe(
@@ -158,7 +159,8 @@ def swift_rules_dependencies(include_bzlmod_ready_dependencies = True):
         sha256 = "9e26765efd7cda24dbe91965dfb1ff8abcaa9ac7bafc3afa7fc1d081dea47d7f",
     )
 
-    _maybe(
-        swift_autoconfiguration,
-        name = "build_bazel_rules_swift_local_config",
-    )
+    if autoconfig:
+        _maybe(
+            swift_autoconfiguration,
+            name = "build_bazel_rules_swift_local_config",
+        )
