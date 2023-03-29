@@ -19,6 +19,10 @@ load(
     "@build_bazel_rules_swift//swift/internal:swift_autoconfiguration.bzl",
     "swift_autoconfiguration",
 )
+load(
+    "@build_bazel_rules_swift//swift/internal:swift_register_toolchain.bzl",
+    "swift_register_linux_toolchain",
+)
 
 def _maybe(repo_rule, name, **kwargs):
     """Executes the given repository rule if it hasn't been executed already.
@@ -164,3 +168,10 @@ def swift_rules_dependencies(include_bzlmod_ready_dependencies = True, autoconfi
             swift_autoconfiguration,
             name = "build_bazel_rules_swift_local_config",
         )
+
+def swift_register_local_linux_toolchain(swift_version, swift_linux_platform):
+    swift_register_linux_toolchain(
+        name = "build_bazel_rules_swift_local_config",
+        swift_version = swift_version,
+        swift_linux_platform = swift_linux_platform,
+    )
