@@ -238,12 +238,6 @@ def create_linux_toolchain(repository_ctx, path_to_swiftc = None):
       repository_ctx: The repository rule context.
       path_to_swiftc: Path to Swift compiler
     """
-    cc = repository_ctx.os.environ.get("CC") or ""
-    if "clang" not in cc:
-        fail("ERROR: rules_swift uses Bazel's CROSSTOOL to link, but Swift " +
-             "requires that the driver used is clang. Please set `CC=clang` " +
-             "in your environment before invoking Bazel.")
-
     if not path_to_swiftc:
         fail("No 'swiftc' executable found in $PATH")
 

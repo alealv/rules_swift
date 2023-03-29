@@ -266,6 +266,12 @@ def _swift_toolchain_impl(ctx):
     toolchain_root = ctx.attr.root
     cc_toolchain = find_cpp_toolchain(ctx)
 
+    if "clang" not in cc_toolchain.compiler:
+        fail("ERROR: rules_swift uses Bazel's CROSSTOOL to link, but Swift " +
+             "requires that the driver used is clang. Please set `CC=clang` " +
+             "in your environment before invoking Bazel.")
+
+
     if ctx.attr.os == "windows":
         swift_linkopts_cc_info = _swift_windows_linkopts_cc_info(
             ctx.attr.arch,
