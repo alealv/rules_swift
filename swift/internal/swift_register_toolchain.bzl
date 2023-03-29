@@ -1,5 +1,7 @@
+"""Downloads and registers a Swift toolchain for Linux
+"""
+
 load(":swift_autoconfiguration.bzl", "create_linux_toolchain")
-load("@com_grail_bazel_toolchain//toolchain:rules.bzl", "llvm", "toolchain", "llvm_toolchain")
 
 def _swift_register_toolchain_impl(repository_ctx):
     os_name = repository_ctx.os.name.lower()

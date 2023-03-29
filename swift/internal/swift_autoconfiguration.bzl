@@ -231,11 +231,12 @@ def _normalized_linux_cpu(cpu):
         return "x86_64"
     return cpu
 
-def create_linux_toolchain(repository_ctx, path_to_swiftc):
+def create_linux_toolchain(repository_ctx, path_to_swiftc = None):
     """Creates BUILD targets for the Swift toolchain on Linux.
 
     Args:
       repository_ctx: The repository rule context.
+      path_to_swiftc: Path to Swift compiler
     """
     cc = repository_ctx.os.environ.get("CC") or ""
     if "clang" not in cc:
